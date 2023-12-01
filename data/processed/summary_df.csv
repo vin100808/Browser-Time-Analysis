@@ -1,0 +1,4 @@
+,date,total_visits,most_visited_url,most_visited_count,educational_productivity,entertainment,other_broad,coding,streaming,medical,financial,educational,gaming,social_media,news_media,other_narrow
+0,all,127,github.com,50,0.5197,0.0472,0.4331,0.3937,,,,,,0.0079,,0.5984
+1,2023-11-29,1,chat.openai.com,1,1.0,,,,,,,,,,,1.0
+2,2023-11-30,126,github.com,50,0.5159,0.0476,0.4365,0.3968,,,,,,0.0079,,0.5952
