@@ -68,7 +68,6 @@ def narrow_categorization(domain):
     else:
         return 'other_narrow'
 
-csv_file_path = 'history.csv'
 # reload: The page was reloaded. This might not necessarily indicate a new visit but rather a refresh of the current page. It's typically not counted as a new visit in terms of analytics.
 # link: You navigated to the page by clicking on a link. This is a standard navigation method and usually counts as a new visit.
 # auto_bookmark: The page was accessed through a bookmark. Depending on the browser's definition, this may or may not count as a new visit.
@@ -78,32 +77,16 @@ csv_file_path = 'history.csv'
 # form_submit: You navigated to this page by submitting a form, which could be a search form or any other kind of user input form.
 
 # TODO:
-# [All Entries]
-# total visits all time             
-# most visited url
-# domain rank all time
-
-# [Daily]
-# average visits in a day 
-# catergorize websites and further analysis
 # take into account of other transitions] develop an algorithm to rank websites based on intention, passive, active, intentional
 
-# Categorizing Domains
-
-class daily_count():
-
-    #columns = ['date', 'total_visits', 'most_visited_url', 'visit_count', 'educational_percentage', '']
-
-    def __init__(self, date):
-        self.date = date
-        self.daily_visit = 0
+# take into the account of what time and what type of domain were visited
 
 def main():
 
     summary_df = pd.DataFrame(columns=summary_columns)
     ranking_df = pd.DataFrame(columns=ranking_columns)
-    
-    df = pd.read_csv(raw_data_path + '/' + 'history.csv')
+
+    df = pd.read_csv(raw_data_path + '/' + 'history_month.csv')
 
     # ==================================
     # ||          PREPROCESS          ||
@@ -134,6 +117,9 @@ def main():
                                  most_visited_count, broad_percentages,
                                  narrow_percentages)
     
+    # Ensure entry has all the columns with default values
+    all_time_entry = {col: all_time_entry.get(col, summary_default[col]) for col in summary_columns}
+
     summary_df = summary_df.append(all_time_entry, ignore_index=True)
 
     # Ranks of domain based on visit counts
@@ -164,6 +150,10 @@ def main():
         daily_entry = data_to_row(daily_date, daily_total_visits, daily_most_visited_url,
                                  daily_most_visited_count, daily_broad_percentages,
                                  daily_narrow_percentages)
+
+        # Ensure daily_entry has all the columns with default values
+        daily_entry = {col: daily_entry.get(col, summary_default[col]) for col in summary_columns}
+
 
         summary_df = summary_df.append(daily_entry, ignore_index=True)
 

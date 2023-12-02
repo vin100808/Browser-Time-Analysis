@@ -22,6 +22,25 @@ summary_columns = [
     'other_narrow'              # Narrow
 ]
 
+summary_default = {
+    'date': 'N/A', 
+    'total_visits': -1, 
+    'most_visited_url': 'N/A', 
+    'most_visited_count': -1, 
+    'educational_productivity': 0, # Broad
+    'entertainment': 0,            # Broad
+    'other_broad': 0,              # Broad
+    'coding': 0,                   # Narrow
+    'streaming': 0,                # Narrow
+    'medical': 0,                  # Narrow
+    'financial': 0,                # Narrow
+    'educational': 0,              # Narrow
+    'gaming': 0,                   # Narrow
+    'social_media': 0,             # Narrow
+    'news_media': 0,               # Narrow
+    'other_narrow': 0              # Narrow
+    }
+
 ranking_columns = [
     'date',
     'domain',
@@ -77,7 +96,7 @@ narrow_financial_domains = [
 
 narrow_educational_domains = [
     'coursera.org', 'edx.org', 'khanacademy.org', 'udemy.com',
-    'academia.edu', 'researchgate.net', 'brainly.com', 'lynda.com'
+    'academia.edu', 'researchgate.net', 'brainly.com', 'lynda.com', 'chat.openai.com'
 ]
 
 narrow_gaming_domains = [

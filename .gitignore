@@ -1,2 +1,4 @@
 # ignore datasets used for analysis as they are sensitive informatio
 history.csv
+history_day.csv
+history_month.csv
