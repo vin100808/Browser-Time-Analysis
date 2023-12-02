@@ -3,42 +3,82 @@
 # ==================================
 # Broad categories are more general and encompass a wider range of websites.
 
-summary_columns = [
+daily_columns = [
     'date', 
     'total_visits', 
     'most_visited_url', 
     'most_visited_count', 
-    'educational_productivity', # Broad
-    'entertainment',            # Broad
-    'other_broad',              # Broad
-    'coding',                   # Narrow
-    'streaming',                # Narrow
-    'medical',                  # Narrow
-    'financial',                # Narrow
-    'educational',              # Narrow
-    'gaming',                   # Narrow
-    'social_media',             # Narrow
-    'news_media',               # Narrow
-    'other_narrow'              # Narrow
+    'study(%)', # Broad
+    'entertainment(%)',            # Broad
+    'other_broad(%)',              # Broad
+    'coding(%)',                   # Narrow
+    'streaming(%)',                # Narrow
+    'medical(%)',                  # Narrow
+    'financial(%)',                # Narrow
+    'educational(%)',              # Narrow
+    'gaming(%)',                   # Narrow
+    'social_media(%)',             # Narrow
+    'news_media(%)',               # Narrow
+    'other_narrow(%)'              # Narrow
 ]
 
-summary_default = {
+daily_default = {
     'date': 'N/A', 
     'total_visits': -1, 
     'most_visited_url': 'N/A', 
     'most_visited_count': -1, 
-    'educational_productivity': 0, # Broad
-    'entertainment': 0,            # Broad
-    'other_broad': 0,              # Broad
-    'coding': 0,                   # Narrow
-    'streaming': 0,                # Narrow
-    'medical': 0,                  # Narrow
-    'financial': 0,                # Narrow
-    'educational': 0,              # Narrow
-    'gaming': 0,                   # Narrow
-    'social_media': 0,             # Narrow
-    'news_media': 0,               # Narrow
-    'other_narrow': 0              # Narrow
+    'study(%)': 0, # Broad
+    'entertainment(%)': 0,            # Broad
+    'other_broad(%)': 0,              # Broad
+    'coding(%)': 0,                   # Narrow
+    'streaming(%)': 0,                # Narrow
+    'medical(%)': 0,                  # Narrow
+    'financial(%)': 0,                # Narrow
+    'educational(%)': 0,              # Narrow
+    'gaming(%)': 0,                   # Narrow
+    'social_media(%)': 0,             # Narrow
+    'news_media(%)': 0,               # Narrow
+    'other_narrow(%)': 0              # Narrow
+    }
+
+summary_columns = [
+    'start_date',
+    'end_date', 
+    'total_visits', 
+    'most_visited_url', 
+    'most_visited_count', 
+    'study(%)', # Broad
+    'entertainment(%)',            # Broad
+    'other_broad(%)',              # Broad
+    'coding(%)',                   # Narrow
+    'streaming(%)',                # Narrow
+    'medical(%)',                  # Narrow
+    'financial(%)',                # Narrow
+    'educational(%)',              # Narrow
+    'gaming(%)',                   # Narrow
+    'social_media(%)',             # Narrow
+    'news_media(%)',               # Narrow
+    'other_narrow(%)'              # Narrow
+]
+
+summary_default = {
+    'start_date': 'N/A', 
+    'end_date': 'N/A',
+    'total_visits': -1, 
+    'most_visited_url': 'N/A', 
+    'most_visited_count': -1, 
+    'study(%)': 0, # Broad
+    'entertainment(%)': 0,            # Broad
+    'other_broad(%)': 0,              # Broad
+    'coding(%)': 0,                   # Narrow
+    'streaming(%)': 0,                # Narrow
+    'medical(%)': 0,                  # Narrow
+    'financial(%)': 0,                # Narrow
+    'educational(%)': 0,              # Narrow
+    'gaming(%)': 0,                   # Narrow
+    'social_media(%)': 0,             # Narrow
+    'news_media(%)': 0,               # Narrow
+    'other_narrow(%)': 0              # Narrow
     }
 
 ranking_columns = [

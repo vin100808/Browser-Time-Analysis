@@ -9,8 +9,25 @@ base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_path = os.path.join(base_dir, 'data', 'raw')
 processed_data_path = os.path.join(base_dir, 'data', 'processed')
 
-# Aggreate data for one entry into a dict
-def data_to_row(date, total_visits, most_visited_url,
+# Aggreate summary data for one entry into a dict
+def summary_data_to_row(start_date, end_date, total_visits, most_visited_url,
+                most_visited_count, broad_percentages, narrow_percentages):
+    row = {'start_date': start_date,
+           'end_date': end_date,
+           'total_visits': total_visits,
+           'most_visited_url': most_visited_url,
+           'most_visited_count': most_visited_count}
+    
+    for key, value in broad_percentages.items():
+        row[key] = round(value, 4)
+    
+    for key, value in narrow_percentages.items():
+        row[key] = round(value, 4)
+
+    return row
+
+# Aggreate daily data for one entry into a dict
+def daily_data_to_row(date, total_visits, most_visited_url,
                 most_visited_count, broad_percentages, narrow_percentages):
     row = {'date': date,
            'total_visits': total_visits,
@@ -42,31 +59,31 @@ def extract_domain(url):
 # Categorization of domains
 def broad_categorization(domain):
     if domain in broad_educational_domains or domain in broad_productivity_domains:
-        return 'educational_productivity'
+        return 'study(%)'
     elif domain in broad_entertainment_domains:
-        return 'entertainment'
+        return 'entertainment(%)'
     else:
-        return 'other_broad'
+        return 'other_broad(%)'
 
 def narrow_categorization(domain):
     if domain in narrow_coding_domains:
-        return 'coding'
+        return 'coding(%)'
     elif domain in narrow_streaming_domains:
-        return 'streaming'    
+        return 'streaming(%)'    
     elif domain in narrow_medical_domains:
-        return 'medical'
+        return 'medical(%)'
     elif domain in narrow_financial_domains:
-        return 'financial'
+        return 'financial(%)'
     elif domain in narrow_educational_domains:
-        return 'educational'
+        return 'educational(%)'
     elif domain in narrow_gaming_domains:
-        return 'gaming'
+        return 'gaming(%)'
     elif domain in narrow_social_media_domains:
-        return 'social_media'
+        return 'social_media(%)'
     elif domain in narrow_news_media_domains:
-        return 'news_media'
+        return 'news_media(%)'
     else:
-        return 'other_narrow'
+        return 'other_narrow(%)'
 
 # reload: The page was reloaded. This might not necessarily indicate a new visit but rather a refresh of the current page. It's typically not counted as a new visit in terms of analytics.
 # link: You navigated to the page by clicking on a link. This is a standard navigation method and usually counts as a new visit.
@@ -84,6 +101,7 @@ def narrow_categorization(domain):
 def main():
 
     summary_df = pd.DataFrame(columns=summary_columns)
+    daily_df = pd.DataFrame(columns=daily_columns)
     ranking_df = pd.DataFrame(columns=ranking_columns)
 
     df = pd.read_csv(raw_data_path + '/' + 'history_month.csv')
@@ -104,30 +122,31 @@ def main():
     # ||           ALL TIME           ||
     # ==================================
 
-    date = 'all'
+    start_date = df['date'].min()
+    end_date = df['date'].max()
     total_visits = df.shape[0]
     domain_visit_counts = Counter(df['domain'])
     most_visited_url = domain_visit_counts.most_common(1)[0][0]
     most_visited_count = domain_visit_counts[most_visited_url]
 
-    broad_percentages = df['broad_category'].value_counts(normalize=True) 
+    broad_percentages = df['broad_category'].value_counts(normalize=True)   
     narrow_percentages = df['narrow_category'].value_counts(normalize=True) 
 
-    all_time_entry = data_to_row(date, total_visits, most_visited_url,
+    summary_entry = summary_data_to_row(start_date, end_date, total_visits, most_visited_url,
                                  most_visited_count, broad_percentages,
                                  narrow_percentages)
     
     # Ensure entry has all the columns with default values
-    all_time_entry = {col: all_time_entry.get(col, summary_default[col]) for col in summary_columns}
+    summary_entry = {col: summary_entry.get(col, summary_default[col]) for col in summary_columns}
 
-    summary_df = summary_df.append(all_time_entry, ignore_index=True)
+    summary_df = summary_df.append(summary_entry, ignore_index=True)
 
     # Ranks of domain based on visit counts
     domain_visited_rank = domain_visit_counts.most_common()
     
     # Append entries: One entry per domain
     for domain, counts in domain_visited_rank:
-        row = {'date': date, 'domain': domain, 'counts': counts}
+        row = {'date': end_date, 'domain': domain, 'counts': counts}
         ranking_df = ranking_df.append(row, ignore_index=True)
     
     # ==================================
@@ -147,15 +166,15 @@ def main():
         daily_broad_percentages = daily_data['broad_category'].value_counts(normalize=True) 
         daily_narrow_percentages = daily_data['narrow_category'].value_counts(normalize=True) 
 
-        daily_entry = data_to_row(daily_date, daily_total_visits, daily_most_visited_url,
+        daily_entry = daily_data_to_row(daily_date, daily_total_visits, daily_most_visited_url,
                                  daily_most_visited_count, daily_broad_percentages,
                                  daily_narrow_percentages)
 
         # Ensure daily_entry has all the columns with default values
-        daily_entry = {col: daily_entry.get(col, summary_default[col]) for col in summary_columns}
+        daily_entry = {col: daily_entry.get(col, daily_default[col]) for col in daily_columns}
 
 
-        summary_df = summary_df.append(daily_entry, ignore_index=True)
+        daily_df = daily_df.append(daily_entry, ignore_index=True)
 
         daily_domain_visited_rank = daily_domain_visit_counts.most_common()
         # Append entries: One entry per domain
@@ -163,13 +182,10 @@ def main():
             row = {'date': daily_date, 'domain': domain, 'counts': counts}
             ranking_df = ranking_df.append(row, ignore_index=True)
 
-    # print(summary_df)
     summary_df.to_csv(processed_data_path + '/' + 'summary_df.csv')
+    daily_df.to_csv(processed_data_path + '/' + 'daily_df.csv')
     ranking_df.to_csv(processed_data_path + '/' + 'ranking_df.csv')
 
-    # daily_visits = grouped_by_date['url'].count()
-    # (datetime.date(2023, 11, 29), 1)
-    # (datetime.date(2023, 11, 30), 126)
 
 
 
