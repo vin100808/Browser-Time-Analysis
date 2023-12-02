@@ -101,8 +101,10 @@ def narrow_categorization(domain):
 def main():
 
     summary_df = pd.DataFrame(columns=summary_columns)
+    summary_ranking_df = pd.DataFrame(columns=ranking_columns)
+
     daily_df = pd.DataFrame(columns=daily_columns)
-    ranking_df = pd.DataFrame(columns=ranking_columns)
+    daily_ranking_df = pd.DataFrame(columns=ranking_columns)
 
     df = pd.read_csv(raw_data_path + '/' + 'history_month.csv')
 
@@ -115,6 +117,7 @@ def main():
     df['narrow_category'] = df['domain'].apply(narrow_categorization) # Add narrow categorization type based on domain
     df['date'] = pd.to_datetime(df['date']).dt.date # Convert date to datetime.date type
     df['time'] = pd.to_datetime(df['time']).dt.time # Conver time to datetime.time type
+    df = df[df['domain'] != 'bohpimdoclnmgldeegbpibkhmpkhblbf'] # Reduce fraudulent data
     
     # print(df)
 
@@ -147,7 +150,7 @@ def main():
     # Append entries: One entry per domain
     for domain, counts in domain_visited_rank:
         row = {'date': end_date, 'domain': domain, 'counts': counts}
-        ranking_df = ranking_df.append(row, ignore_index=True)
+        summary_ranking_df = summary_ranking_df.append(row, ignore_index=True)
     
     # ==================================
     # ||            DAILY             ||
@@ -180,14 +183,13 @@ def main():
         # Append entries: One entry per domain
         for domain, counts in daily_domain_visited_rank:
             row = {'date': daily_date, 'domain': domain, 'counts': counts}
-            ranking_df = ranking_df.append(row, ignore_index=True)
+            daily_ranking_df = daily_ranking_df.append(row, ignore_index=True)
 
     summary_df.to_csv(processed_data_path + '/' + 'summary_df.csv')
+    summary_ranking_df.to_csv(processed_data_path + '/' + 'summary_ranking_df.csv')
+
     daily_df.to_csv(processed_data_path + '/' + 'daily_df.csv')
-    ranking_df.to_csv(processed_data_path + '/' + 'ranking_df.csv')
-
-
-
+    daily_ranking_df.to_csv(processed_data_path + '/' + 'daily_ranking_df.csv')
 
 
 main()
