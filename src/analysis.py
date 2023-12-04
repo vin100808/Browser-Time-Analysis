@@ -9,6 +9,33 @@ base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_path = os.path.join(base_dir, 'data', 'raw')
 processed_data_path = os.path.join(base_dir, 'data', 'processed')
 
+# Aggregate time analysis data for one entry into dict
+def time_data_to_row(time_category, total_visits, most_visited_url,
+                     most_visited_count, broad_percentages, narrow_percentages):
+    row = {'time_category': time_category,
+           'total_visits': total_visits,
+           'most_visited_url': most_visited_url,
+           'most_visited_count': most_visited_count}
+    
+    for key, value in broad_percentages.items():
+        row[key] = round(value, 4)
+    
+    for key, value in narrow_percentages.items():
+        row[key] = round(value, 4)
+
+    return row
+
+# Determine timeframe for time
+def time_categorization(time):
+    if morning_start <= time < noon_start:
+        return 'Morning'
+    elif noon_start <= time < evening_start:
+        return 'Afternoon'
+    elif evening_start <= time < before_midnight:
+        return 'Evening'
+    else:
+        return 'Before Dawn'
+
 # Aggreate summary data for one entry into a dict
 def summary_data_to_row(start_date, end_date, total_visits, most_visited_url,
                 most_visited_count, broad_percentages, narrow_percentages):
@@ -102,6 +129,7 @@ def main():
 
     summary_df = pd.DataFrame(columns=summary_columns)
     summary_ranking_df = pd.DataFrame(columns=ranking_columns)
+    summary_time_df = pd.DataFrame(columns=time_analysis_columns)
 
     daily_df = pd.DataFrame(columns=daily_columns)
     daily_ranking_df = pd.DataFrame(columns=ranking_columns)
@@ -118,7 +146,8 @@ def main():
     df['date'] = pd.to_datetime(df['date']).dt.date # Convert date to datetime.date type
     df['time'] = pd.to_datetime(df['time']).dt.time # Conver time to datetime.time type
     df = df[df['domain'] != 'bohpimdoclnmgldeegbpibkhmpkhblbf'] # Reduce fraudulent data
-    
+    df['time_category'] = df['time'].apply(time_categorization) # Morning, Afternoon, Evening, Before Dawn
+
     # print(df)
 
     # ==================================
@@ -185,8 +214,33 @@ def main():
             row = {'date': daily_date, 'domain': domain, 'counts': counts}
             daily_ranking_df = daily_ranking_df.append(row, ignore_index=True)
 
+    # ==================================
+    # ||        Time Analysis         ||
+    # ==================================
+    grouped_df = df.groupby('time_category')
+    for time_category, time_data in grouped_df:
+        print(time_category)
+        total_visits = time_data.shape[0]
+        domain_visit_counts = Counter(time_data['domain'])
+
+        most_visited_url = domain_visit_counts.most_common(1)[0][0]
+        most_visited_count = domain_visit_counts[most_visited_url]
+
+        broad_percentages = time_data['broad_category'].value_counts(normalize=True)   
+        narrow_percentages = time_data['narrow_category'].value_counts(normalize=True) 
+
+        time_entry = time_data_to_row(time_category, total_visits, most_visited_url,
+                                    most_visited_count, broad_percentages,
+                                    narrow_percentages)
+        
+        # Ensure entry has all the columns with default values
+        time_entry = {col: time_entry.get(col, time_analysis_default[col]) for col in time_analysis_columns}
+
+        summary_time_df = summary_time_df.append(time_entry, ignore_index=True)
+
     summary_df.to_csv(processed_data_path + '/' + 'summary_df.csv')
     summary_ranking_df.to_csv(processed_data_path + '/' + 'summary_ranking_df.csv')
+    summary_time_df.to_csv(processed_data_path + '/' + 'summary_time_df.csv')
 
     daily_df.to_csv(processed_data_path + '/' + 'daily_df.csv')
     daily_ranking_df.to_csv(processed_data_path + '/' + 'daily_ranking_df.csv')
