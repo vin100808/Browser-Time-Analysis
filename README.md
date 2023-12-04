@@ -228,7 +228,7 @@ Insights from the Graph:
 
 #### 5. Overall Narrow Categorization
 
-![Overall Narrow Categorization](results/5overall_narrow_categorization.png)
+![Overall Narrow Categorization](results/5Overall_Narrow_Categorization.png)
 
 The "Overall Narrow Categorization" bar chart provides a detailed breakdown of the user's internet browsing across specific categories within a set period. This visualization enables a more granular view of the user's online activities.
 
