@@ -9,6 +9,34 @@ base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_path = os.path.join(base_dir, 'data', 'raw')
 processed_data_path = os.path.join(base_dir, 'data', 'processed')
 
+# Aggregate day analysis data for one entry into dict
+def day_data_to_row(day_type, total_visits, most_visited_url,
+                    most_visited_count, broad_percentages, narrow_percentages):
+    row = {'day_type': day_type,
+           'total_visits': total_visits,
+           'most_visited_url': most_visited_url,
+           'most_visited_count': most_visited_count}
+    if day_type == 'Weekday':
+        row['average_visits_per_day'] = total_visits/5
+    else:
+        row['average_visits_per_day'] = total_visits/2
+
+    for key, value in broad_percentages.items():
+        row[key] = round(value, 4)
+    
+    for key, value in narrow_percentages.items():
+        row[key] = round(value, 4)
+
+    return row
+
+# Day Categorization sort
+def day_categorization(given_date):
+    # Check if the date is a weekend
+    if given_date.weekday() >= 5:  # 5 for Saturday, 6 for Sunday
+        return 'Weekend'
+    else:
+        return 'Weekday'
+
 # Aggregate time analysis data for one entry into dict
 def time_data_to_row(time_category, total_visits, most_visited_url,
                      most_visited_count, broad_percentages, narrow_percentages):
@@ -123,13 +151,12 @@ def narrow_categorization(domain):
 # TODO:
 # take into account of other transitions] develop an algorithm to rank websites based on intention, passive, active, intentional
 
-# take into the account of what time and what type of domain were visited
-
 def main():
 
     summary_df = pd.DataFrame(columns=summary_columns)
     summary_ranking_df = pd.DataFrame(columns=ranking_columns)
     summary_time_df = pd.DataFrame(columns=time_analysis_columns)
+    summary_day_df = pd.DataFrame(columns=day_analysis_columns)
 
     daily_df = pd.DataFrame(columns=daily_columns)
     daily_ranking_df = pd.DataFrame(columns=ranking_columns)
@@ -147,6 +174,7 @@ def main():
     df['time'] = pd.to_datetime(df['time']).dt.time # Conver time to datetime.time type
     df = df[df['domain'] != 'bohpimdoclnmgldeegbpibkhmpkhblbf'] # Reduce fraudulent data
     df['time_category'] = df['time'].apply(time_categorization) # Morning, Afternoon, Evening, Before Dawn
+    df['day_type'] = df['date'].apply(day_categorization) # Weekend, Weekday
 
     # print(df)
 
@@ -219,7 +247,6 @@ def main():
     # ==================================
     grouped_df = df.groupby('time_category')
     for time_category, time_data in grouped_df:
-        print(time_category)
         total_visits = time_data.shape[0]
         domain_visit_counts = Counter(time_data['domain'])
 
@@ -238,9 +265,35 @@ def main():
 
         summary_time_df = summary_time_df.append(time_entry, ignore_index=True)
 
+    # ==================================
+    # ||      Day Type Analysis       ||
+    # ==================================
+    grouped_df = df.groupby('day_type')
+    for day_type, day_data in grouped_df:
+        total_visits = day_data.shape[0]
+        domain_visit_counts = Counter(day_data['domain'])
+
+        most_visited_url = domain_visit_counts.most_common(1)[0][0]
+        most_visited_count = domain_visit_counts[most_visited_url]
+
+        broad_percentages = day_data['broad_category'].value_counts(normalize=True)   
+        narrow_percentages = day_data['narrow_category'].value_counts(normalize=True) 
+
+        day_entry = day_data_to_row(day_type, total_visits, most_visited_url,
+                                    most_visited_count, broad_percentages,
+                                    narrow_percentages)
+        
+        # Ensure entry has all the columns with default values
+        day_entry = {col: day_entry.get(col, day_analysis_default[col]) for col in day_analysis_columns}
+
+        summary_day_df = summary_day_df.append(day_entry, ignore_index=True)
+
+
+
     summary_df.to_csv(processed_data_path + '/' + 'summary_df.csv')
     summary_ranking_df.to_csv(processed_data_path + '/' + 'summary_ranking_df.csv')
     summary_time_df.to_csv(processed_data_path + '/' + 'summary_time_df.csv')
+    summary_day_df.to_csv(processed_data_path + '/' + 'summary_day_df.csv')
 
     daily_df.to_csv(processed_data_path + '/' + 'daily_df.csv')
     daily_ranking_df.to_csv(processed_data_path + '/' + 'daily_ranking_df.csv')

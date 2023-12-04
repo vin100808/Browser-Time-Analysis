@@ -1,0 +1,3 @@
+,day_type,total_visits,average_visits_per_day,most_visited_url,most_visisted_count,study(%),entertainment(%),other_broad(%),coding(%),streaming(%),medical(%),financial(%),educational(%),gaming(%),social_media(%),news_media(%),other_narrow(%)
+0,Weekday,2283,456.6,youtube.com,0,0.1857,0.2413,0.5729,0.0727,0,0,0,0.113,0,0.0223,0,0.7919
+1,Weekend,308,154.0,youtube.com,0,0.1006,0.2208,0.6786,0.0682,0,0,0,0.0325,0,0.0455,0,0.8539

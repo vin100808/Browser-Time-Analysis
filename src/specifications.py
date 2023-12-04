@@ -6,6 +6,46 @@ evening_start = time(17, 0)  # Assuming evening starts at 5 PM
 before_dawn_end = time(5, 0)  # Assuming before dawn ends at 5 AM
 before_midnight = time(23, 59, 59)
 
+day_analysis_columns = [
+    'day_type',
+    'total_visits',
+    'average_visits_per_day',
+    'most_visited_url',
+    'most_visisted_count',
+    'study(%)', # Broad
+    'entertainment(%)',            # Broad
+    'other_broad(%)',              # Broad
+    'coding(%)',                   # Narrow
+    'streaming(%)',                # Narrow
+    'medical(%)',                  # Narrow
+    'financial(%)',                # Narrow
+    'educational(%)',              # Narrow
+    'gaming(%)',                   # Narrow
+    'social_media(%)',             # Narrow
+    'news_media(%)',               # Narrow
+    'other_narrow(%)'              # Narrow
+]
+
+day_analysis_default = {
+    'day_type': 'N/A',
+    'total_visits': 0,
+    'average_visits_per_day': 0,
+    'most_visited_url': 'N/A',
+    'most_visisted_count': 0,
+    'study(%)': 0, # Broad
+    'entertainment(%)': 0,            # Broad
+    'other_broad(%)': 0,              # Broad
+    'coding(%)': 0,                   # Narrow
+    'streaming(%)': 0,                # Narrow
+    'medical(%)': 0,                  # Narrow
+    'financial(%)': 0,                # Narrow
+    'educational(%)': 0,              # Narrow
+    'gaming(%)': 0,                   # Narrow
+    'social_media(%)': 0,             # Narrow
+    'news_media(%)': 0,               # Narrow
+    'other_narrow(%)': 0              # Narrow
+}
+
 time_analysis_columns = [
     'time_category', 
     'total_visits', 

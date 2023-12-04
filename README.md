@@ -128,6 +128,8 @@ Furthermore, the recent global shift towards remote education and work has furth
 
 ## Analysis and Results
 
+### Overall Analysis
+
 #### 1. Top 20 Overall Most Visited Websites
 
 ![Top 20 Overall Visited Websites](results/1Top_20_Overall_Most_Visited_Websites.png)
@@ -152,33 +154,9 @@ This chart provides a clear snapshot of the user's online behavior, identifying 
 
 
 
-#### 2. Daily Broad Category Percentages
+#### 2. Overall Broad Categorization
 
-![Daily Broad Category Percentages](results/2Daily_Broad_Category_Percentages.png)
-
-The "Daily Broad Category Percentages" chart categorizes the user's browser history into three main categories: `Entertainment`, `Study`, and `Other Broad`. The stacked bar graph visually represents the proportional distribution of these categories across each day in the dataset.
-
-Graph Description:
-
-- **Stacked Segments**: The bars are segmented to reflect the proportionate engagement in Study, Entertainment, or Other Broad activities on each specific day.
-- **Date Axis**: The X-axis lists consecutive dates, indicating the period over which the browsing data was collected.
-- **Percentage Axis**: The Y-axis shows percentages, allowing for the visualization of the relative distribution of the browsing activity across the categories.
-- **Color Coding**: Each category is assigned a distinct color to easily differentiate between the types of activities within a day's browsing.
-
-From this visualization, several insights emerge:
-
-1. **Study as a Priority**: A significant portion of each bar is often dedicated to the `Study(%)` category, suggesting that the user's primary use of the internet is for educational or productivity-related purposes.
-2. **Daily Fluctuations**: There is noticeable daily fluctuation in the proportion of time spent on `Entertainment(%)` and `Other Broad(%)` categories, indicating variability in the user's day-to-day browsing activities.
-3. **Consistent Other Activities**: The `Other Broad(%)` segment is present each day, which implies that the user consistently engages in a variety of other activities beyond just study and entertainment.
-4. **Notable Peaks**: Certain days show pronounced peaks in one category over others. For example, some days may have a higher proportion of `Entertainment(%)` or `Other Broad(%)`, which may correspond to specific events or personal downtime.
-5. **Low Entertainment Engagement**: Overall, the `Entertainment(%)` category occupies the smallest segment on most days, suggesting that the user spends less time on entertainment-related websites compared to other activities.
-6. **Further Exploration**: A fun activity for everyone is to assess the days with 100% `Entertainment` or `Study` to discern any patterns or triggers that lead to exclusive browsing history of one category, such as deadlines, holidays or weekends.
-
-
-
-#### 3. Overall Broad Categorization
-
-<img src="results/3Overall_Broad_Categorization.png" alt="Overall Broad Categorization" style="zoom:75%;" />
+<img src="results/3Overall_Broad_Categorization.png" alt="Overall Broad Categorization" style="zoom:50%;" />
 
 The "Overall Broad Categorization" pie chart compiles the user's entire browsing history into three main categories—`Study(%)`, `Entertainment(%)`, and `Other Broad(%)`—depicting the cumulative time spent in each category.
 
@@ -204,29 +182,7 @@ This overall categorization helps in understanding the user's typical internet u
 
 
 
-#### 4. Number of Visits Per Day
-
-![Number of Visits Per Day](results/4Number_of_Visits_Per_Day.png)
-
-The chart "Number of Visits Per Day" illustrates a user's web browsing activity over a period, quantified by the number of site visits each day. The horizontal bars represent the total count of website visits per day, laid out on a calendar timeline.
-
-Graph Description:
-
-- **Horizontal Bars**: Each bar corresponds to the total number of visits on a particular day.
-- **Activity Volume**: The X-axis measures the volume of visits, providing a sense of the user's daily internet activity levels.
-- **Time Sequence**: The Y-axis represents time, specifically the days in November and early December 2023.
-
-Insights from the Graph:
-
-1. **Fluctuating Activity**: There's a noticeable fluctuation in daily browsing activity. Some days exhibit high numbers of site visits, while others show significantly fewer visits.
-2. **Peaks of Activity**: Certain days, such as November 6, November 24, November 28, and November 29, have particularly high activity, which could correspond to specific personal or professional needs that required more extensive internet use.
-3. **Periods of Low Activity**: There are also instances of minimal activity, for instance, on November 4, November 11, and November 19. These could represent days when the user was less active online or potentially did not have access to the internet.
-4. **Trending Increase**: Towards the end of the month, there is a trend of increasing activity, peaking on November 29. This pattern might correlate with end-of-the-month routines or deadlines.
-5. **Consistency**: Despite fluctuations, the user consistently engages with the internet on a daily basis, indicating that web browsing is a regular part of their daily routine.
-
-
-
-#### 5. Overall Narrow Categorization
+#### 3. Overall Narrow Categorization
 
 ![Overall Narrow Categorization](results/5Overall_Narrow_Categorization.png)
 
@@ -248,7 +204,57 @@ Insights from the Graph:
 
 
 
-#### 6. Total Visits Based On Time Category
+### Daily Analysis
+
+#### 1. Daily Broad Category Percentages
+
+![Daily Broad Category Percentages](results/2Daily_Broad_Category_Percentages.png)
+
+The "Daily Broad Category Percentages" chart categorizes the user's browser history into three main categories: `Entertainment`, `Study`, and `Other Broad`. The stacked bar graph visually represents the proportional distribution of these categories across each day in the dataset.
+
+Graph Description:
+
+- **Stacked Segments**: The bars are segmented to reflect the proportionate engagement in Study, Entertainment, or Other Broad activities on each specific day.
+- **Date Axis**: The X-axis lists consecutive dates, indicating the period over which the browsing data was collected.
+- **Percentage Axis**: The Y-axis shows percentages, allowing for the visualization of the relative distribution of the browsing activity across the categories.
+- **Color Coding**: Each category is assigned a distinct color to easily differentiate between the types of activities within a day's browsing.
+
+From this visualization, several insights emerge:
+
+1. **Study as a Priority**: A significant portion of each bar is often dedicated to the `Study(%)` category, suggesting that the user's primary use of the internet is for educational or productivity-related purposes.
+2. **Daily Fluctuations**: There is noticeable daily fluctuation in the proportion of time spent on `Entertainment(%)` and `Other Broad(%)` categories, indicating variability in the user's day-to-day browsing activities.
+3. **Consistent Other Activities**: The `Other Broad(%)` segment is present each day, which implies that the user consistently engages in a variety of other activities beyond just study and entertainment.
+4. **Notable Peaks**: Certain days show pronounced peaks in one category over others. For example, some days may have a higher proportion of `Entertainment(%)` or `Other Broad(%)`, which may correspond to specific events or personal downtime.
+5. **Low Entertainment Engagement**: Overall, the `Entertainment(%)` category occupies the smallest segment on most days, suggesting that the user spends less time on entertainment-related websites compared to other activities.
+6. **Further Exploration**: A fun activity for everyone is to assess the days with 100% `Entertainment` or `Study` to discern any patterns or triggers that lead to exclusive browsing history of one category, such as deadlines, holidays or weekends.
+
+
+
+#### 2. Number of Visits Per Day
+
+![Number of Visits Per Day](results/4Number_of_Visits_Per_Day.png)
+
+The chart "Number of Visits Per Day" illustrates a user's web browsing activity over a period, quantified by the number of site visits each day. The horizontal bars represent the total count of website visits per day, laid out on a calendar timeline.
+
+Graph Description:
+
+- **Horizontal Bars**: Each bar corresponds to the total number of visits on a particular day.
+- **Activity Volume**: The X-axis measures the volume of visits, providing a sense of the user's daily internet activity levels.
+- **Time Sequence**: The Y-axis represents time, specifically the days in November and early December 2023.
+
+Insights from the Graph:
+
+1. **Fluctuating Activity**: There's a noticeable fluctuation in daily browsing activity. Some days exhibit high numbers of site visits, while others show significantly fewer visits.
+2. **Peaks of Activity**: Certain days, such as November 6, November 24, November 28, and November 29, have particularly high activity, which could correspond to specific personal or professional needs that required more extensive internet use.
+3. **Periods of Low Activity**: There are also instances of minimal activity, for instance, on November 4, November 11, and November 19. These could represent days when the user was less active online or potentially did not have access to the internet.
+4. **Trending Increase**: Towards the end of the month, there is a trend of increasing activity, peaking on November 29. This pattern might correlate with end-of-the-month routines or deadlines.
+5. **Consistency**: Despite fluctuations, the user consistently engages with the internet on a daily basis, indicating that web browsing is a regular part of their daily routine.
+
+
+
+### Time Category Analysis
+
+#### 1. Total Visits Based On Time Category
 
 <img src="results/6Total_Visits_Based_On_Time_Category.png" alt="Total Visits Based on Time Category" style="zoom:100%;" />
 
@@ -272,7 +278,7 @@ This chart provides a clear depiction of the user's preferred browsing times, wh
 
 
 
-#### 7. Broad Categorization Based on Time Category
+#### 2. Broad Categorization Based on Time Category
 
 ![Broad Categorization Based on Time Category](results/7Broad_Categorization_Based_on_Time_Category.png)
 
@@ -296,7 +302,7 @@ This chart offers insights into the user's daily rhythm and preferences, showing
 
 
 
-#### 8. Narrow Categorization Based On Time Category
+#### 3. Narrow Categorization Based On Time Category
 
 ![Narrow Categorization Based On Time Category](results/8Narrow_Categorization_Based_On_Time_Category.png)
 
@@ -317,6 +323,78 @@ Insights from the Graph:
 5. **Low Activity in Other Interests**: Categories like `Financial(%)`, `Gaming(%)`, `Medical(%)`, `News Media(%)`, and `Streaming(%)` show little to no activity, which could indicate lesser interest or that these activities occur less frequently within the user's online routine.
 
 This chart offers a detailed perspective on the user's daily internet use, showing not only the volume of activity but also how the user's focus shifts among various interests at different times of the day.
+
+
+
+### Weekday V.S. Weekend Analysis
+
+#### 1. Average Visits Per Day Based On Day Type
+
+![Average Visits Per Day Based On Day Type](results/9Average_Visits_Per_Day_Based_On_Day_Type.png)
+
+The chart titled "Average Visits Per Day Based On Day Type" is a horizontal bar graph that compares the average number of website visits per day between two categories: Weekday and Weekend.
+
+Graph Description:
+
+- **Categories**: There are two categories represented by horizontal bars: Weekday and Weekend.
+- **Proportionality**: The length of each bar indicates the average number of visits per day for each category, providing a clear comparison of user activity between weekdays and weekends.
+- **Measurements**: The Y-axis lists the day types, while the X-axis represents the average number of visits, quantified on the scale.
+
+Insights from the Graph:
+
+1. **Higher Weekday Activity**: The Weekday bar is significantly longer, indicating a much higher average number of visits per day compared to the Weekend. This suggests that the user is more active online during weekdays.
+2. **Reduced Weekend Browsing**: The Weekend bar shows that on average, there are fewer visits, which might imply that the user spends less time online during the weekends or that their browsing habits change, possibly due to different weekend routines or leisure activities.
+3. **Routine Implications**: The marked difference in averages could reflect the user's work or school schedule, which typically involves more consistent internet usage during the weekdays.
+4. **Potential for Deeper Analysis**: The average figures invite a deeper analysis of why there might be such a discrepancy. Factors could include work-related use, study habits, or other scheduled weekly activities that do not occur on weekends.
+
+This visualization is useful for understanding the user's browsing habits in the context of their weekly routine, highlighting the stark contrast in online engagement between weekdays and weekends.
+
+
+
+#### 2. Broad Categorization Based On Day Type
+
+![Broad Categorization Based On Day Type](results/10Broad_Categorization_Based_On_Day_Type.png)
+
+The chart titled "Broad Categorization Based On Day Type" is a stacked bar graph that delineates the proportion of the user's web browsing activity across three broad categories—`Study(%)`, `Other Broad(%)`, and `Entertainment(%)`—differentiated by day type: Weekday and Weekend.
+
+Graph Description:
+
+- **Categories**: Each horizontal bar is segmented according to the percentage of the user's browsing activity within the categories of Study, Other Broad, and Entertainment, for each day type.
+- **Proportionality**: The segments within each bar reflect the proportion of visits to websites within each category, illustrating the user's browsing preference pattern on weekdays versus weekends.
+- **Day Type**: The bars are divided into two categories, Weekday and Weekend, indicating when the user engages in different types of online activities.
+
+Insights from the Graph:
+
+1. **Weekday Activities**: On weekdays, `Other Broad(%)` activities constitute the majority of the user's browsing activity, followed by `Study(%)` and then `Entertainment(%)`, which could be indicative of work or school-related internet usage being prioritized during the week.
+2. **Weekend Preferences**: Over the weekend, while `Other Broad(%)` still remains the largest category, the proportion of `Entertainment(%)` increases compared to weekdays, suggesting that the user allocates more time for leisure activities during weekends.
+3. **Decrease in Study Focus**: The `Study(%)` category shows a lower percentage on weekends, which aligns with typical behavior patterns where academic or professional work is reduced during these days.
+4. **Consistency in `Other Broad` Category**: Despite the changes from weekdays to weekends, the `Other Broad(%)` category consistently constitutes a significant portion of the browsing activity, indicating a continuous engagement with a variety of websites.
+
+This chart offers insights into the user's browsing behavior, demonstrating how their focus shifts from study and work-related content on weekdays to more entertainment-focused content during weekends, while consistently maintaining a variety of other activities.
+
+
+
+#### 3. Narrow Categorization Based On Day Type
+
+![Narrow Categorization Based On Day Type](results/11Narrow_Categorization_Based_On_Day_Type.png)
+
+The "Narrow Categorization Based On Day Type" chart is a stacked bar graph that presents the user's web browsing activity categorized into specific interests or content types, further differentiated by day type: Weekday and Weekend.
+
+Graph Description:
+
+- **Categories**: Each horizontal bar is divided into segments that correspond to narrow categories such as `Coding(%)`, `Educational(%)`, `Social Media(%)`, and so on, providing a detailed view of the user's specific browsing activity.
+- **Proportionality**: The width of each segment within the bars indicates the proportion of total visits that fall within each narrow category, enabling a visual comparison of how the user's browsing preferences differ between weekdays and weekends.
+- **Day Type**: The bars are categorized by the day type, illustrating when the user engages in these specific types of online activities.
+
+Insights from the Graph:
+
+1. **Weekday Distribution**: On weekdays, the vast majority of the user's browsing activity falls within the `Other Narrow(%)` category, with a small segment of `Educational(%)` activity, suggesting focused internet use potentially related to work or study.
+2. **Weekend Activities**: During the weekend, the `Other Narrow(%)` category still comprises most of the browsing activity, but there is also a small increase in `Educational(%)` content compared to weekdays.
+3. **Educational Engagement**: The presence of `Educational(%)` content on both weekdays and weekends indicates a consistent engagement with learning or informational websites, regardless of the day type.
+4. **Limited Diversification**: The absence of notable segments for `Social Media(%)`, `Streaming(%)`, and other specific activities suggests that these do not make up a large portion of the user's browsing, or these activities are less frequent within the observed timeframe.
+5. **Dominance of 'Other Narrow' Activities**: Regardless of whether it's a weekday or weekend, `Other Narrow(%)` activities dominate the user's browsing, implying a diverse range of interests that are not classified within the more defined narrow categories.
+
+This visualization highlights the user's browsing habits in relation to the types of content they access, offering insights into how their specific interests in online content may vary between regular weekdays and the weekend.
 
 
 
