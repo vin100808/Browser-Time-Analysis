@@ -6,6 +6,32 @@ evening_start = time(17, 0)  # Assuming evening starts at 5 PM
 before_dawn_end = time(5, 0)  # Assuming before dawn ends at 5 AM
 before_midnight = time(23, 59, 59)
 
+scoring_columns = [
+    'domain',
+    'total_visits',
+    'typed',
+    'auto_bookmark',
+    'form_submit',
+    'link',
+    'reload',
+    'auto_toplevel',
+    'generated',
+    'score'
+]
+
+scoring_default = {
+    'domain': 'N/A',
+    'total_visits': 0,
+    'typed': 0,
+    'auto_bookmark': 0,
+    'form_submit': 0,
+    'link': 0,
+    'reload': 0,
+    'auto_toplevel': 0,
+    'generated': 0,
+    'score': 0
+}
+
 day_analysis_columns = [
     'day_type',
     'total_visits',
