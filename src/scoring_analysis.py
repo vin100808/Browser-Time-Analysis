@@ -67,7 +67,7 @@ def main():
 
     summary_score_df = pd.DataFrame(columns=scoring_columns)
 
-    df = pd.read_csv(raw_data_path + '/' + 'history_month.csv')
+    df = pd.read_csv(raw_data_path + '/' + 'history.csv')
 
     df['domain'] = df['url'].apply(extract_domain) # Add extracted domains for each visit
     df = df[df['domain'] != 'bohpimdoclnmgldeegbpibkhmpkhblbf'] # Reduce fraudulent data

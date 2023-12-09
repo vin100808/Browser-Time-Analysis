@@ -1,5 +1,5 @@
 ,time_category,total_visits,most_visited_url,most_visited_count,study(%),entertainment(%),other_broad(%),coding(%),streaming(%),medical(%),financial(%),educational(%),gaming(%),social_media(%),news_media(%),other_narrow(%)
-0,Afternoon,990,youtube.com,273,0.101,0.2758,0.6232,0.0515,0,0,0,0.0495,0,0.0091,0,0.8899
-1,Before Dawn,330,xiaohongshu.com,76,0.1788,0.1515,0.6697,0.1576,0,0,0,0.0212,0,0.0121,0,0.8091
-2,Evening,751,youtube.com,157,0.2011,0.217,0.5819,0.0852,0,0,0,0.1158,0,0.0533,0,0.7457
-3,Morning,520,youtube.com,133,0.2788,0.2558,0.4654,0.0385,0,0,0,0.2404,0,0.0231,0,0.6981
+0,Afternoon,626,netflix.com,158,0.0096,0.4313,0.5591,0,0.2572,0.0048,0,0.0096,0,0.0032,0,0.7252
+1,Before Dawn,540,mail.google.com,201,0.0,0.0796,0.9204,0,0.0148,0.0,0,0.0,0,0.0574,0,0.9278
+2,Evening,1201,google.com,257,0.0092,0.1765,0.8143,0.0067,0.0949,0.0,0,0.0025,0.0017,0.0133,0,0.8809
+3,Morning,124,netflix.com,58,0.0,0.6532,0.3468,0,0.4677,0.0,0,0.0,0,0.0,0,0.5323
