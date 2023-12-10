@@ -4,7 +4,8 @@ import os
 import numpy as np
 from urllib.parse import urlparse
 from collections import Counter
-from specifications import *
+# from specs import *
+from definition import *
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_path = os.path.join(base_dir, 'data', 'raw')
@@ -63,14 +64,9 @@ def calculate_domain_score(transition_count, number_of_visits, max_visits):
 # score = calculate_domain_score(typed=50, auto_bookmark=25, form_submit=10, link=50, auto_toplevel=5, generated=10)
 # print(score)  # This will give you a score out of 100, factoring in total visits
 
-def main():
+def scoring_analysis(df):
 
     summary_score_df = pd.DataFrame(columns=scoring_columns)
-
-    df = pd.read_csv(raw_data_path + '/' + 'history.csv')
-
-    df['domain'] = df['url'].apply(extract_domain) # Add extracted domains for each visit
-    df = df[df['domain'] != 'bohpimdoclnmgldeegbpibkhmpkhblbf'] # Reduce fraudulent data
 
     grouped_df = df.groupby('domain')
     domain_visit_counts = Counter(df['domain'])
@@ -97,6 +93,5 @@ def main():
         score_entry = {col: score_entry.get(col, scoring_default[col]) for col in scoring_columns}
         summary_score_df = summary_score_df.append(score_entry, ignore_index=True)
 
-    summary_score_df.to_csv(processed_data_path + '/' + 'summary_score_df.csv')
+    return summary_score_df
 
-main()

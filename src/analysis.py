@@ -7,7 +7,7 @@ from specs import *
 from categorization import *
 from summary import summary_analysis
 from daily import daily_analysis
-
+from score import scoring_analysis
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_path = os.path.join(base_dir, 'data', 'raw')
@@ -31,7 +31,10 @@ def new():
     df['day_type'] = df['date'].apply(day_categorization) # Weekend, Weekday
 
     summary_df, summary_ranking_df, summary_time_df, summary_day_df = summary_analysis(df)
+
     daily_df, daily_ranking_df = daily_analysis(df)
+    
+    summary_score_df = scoring_analysis(df)
 
     summary_df.to_csv(processed_data_path + '/' + 'summary_df.csv')
     summary_ranking_df.to_csv(processed_data_path + '/' + 'summary_ranking_df.csv')
@@ -40,5 +43,7 @@ def new():
 
     daily_df.to_csv(processed_data_path + '/' + 'daily_df.csv')
     daily_ranking_df.to_csv(processed_data_path + '/' + 'daily_ranking_df.csv')
+
+    summary_score_df.to_csv(processed_data_path + '/' + 'summary_score_df.csv')
 
 new()
